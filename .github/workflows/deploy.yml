@@ -3,9 +3,18 @@ name: Deploy to server
 on: push
 
 jobs:
-  first_jobs:
+  first_job:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Hola mundo
+      - name: Hola Mundo
+        run: echo "Hola Mundo"
+
+  second_job:
+    if: ${{github.ref == 'refs/heads/develop'}}
+    needs: first_job
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Hola Mundo
         run: echo "Hola Mundo"
